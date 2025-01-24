@@ -1,0 +1,650 @@
+@import url("https://fonts.googleapis.com/css?family=Major+Mono+Display&display=swap");
+@font-face {
+  font-family: "Digital 7";
+  src: url("https://assets.codepen.io/450456/digital-7.woff");
+}
+html,
+body {
+  height: 100%;
+  position: relative;
+}
+
+* {
+  position: absolute;
+}
+
+.scene {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: linear-gradient(43deg, #4158d0 0%, #c850c0 46%, #ffcc70 100%);
+}
+.scene::after {
+  content: "";
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0);
+}
+
+.title {
+  user-select: none;
+  position: absolute;
+  font-family: "Major Mono Display", monospace;
+  color: white;
+  top: 16px;
+  left: 16px;
+  right: 100px;
+  font-size: 28px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  word-spacing: -5px;
+  letter-spacing: -1.5px;
+  padding-bottom: 15px;
+  text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.5);
+}
+.title small {
+  font-size: 16px;
+  position: absolute;
+  top: 120%;
+  left: 0;
+}
+.title::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  opacity: 0.25;
+  left: 0px;
+  height: 3px;
+  width: 87px;
+  background: white;
+}
+
+.disclaimer {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  font-size: 14px;
+  font-family: "Major Mono Display", sans-serif;
+  color: white;
+  z-index: 10;
+}
+.disclaimer a {
+  color: white;
+  margin-left: 5px;
+}
+
+.microwave {
+  top: 50%;
+  transform: translateY(-50%);
+  left: 15vw;
+  right: 15vw;
+  height: 40vw;
+  border-radius: 10px;
+  background: linear-gradient(to top, #737373 0%, #afafaf 5%, #d7d7d7 15%, #e1e1e1 20%, whitesmoke 55%, #ebebeb 80%, #ebebeb 93%, white 97%, #ebebeb 100%);
+}
+.microwave::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(to right, #000 0%, #fff 1%, #fff 97%, #000 100%);
+  opacity: 0.1;
+  border-radius: 10px;
+}
+.microwave__shadow {
+  top: calc(100% + 1.45vw);
+  width: 120%;
+  left: -10%;
+  height: 1.6vw;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 70%);
+}
+.microwave__bottom {
+  top: 100%;
+  left: 10px;
+  right: 10px;
+  height: 1.3vw;
+}
+.microwave__bottom::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: -0.5px;
+  height: 100%;
+  background: linear-gradient(to top, #000 0%, #232323 50%, dimgray 90%, #000 100%);
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+}
+.microwave__bottom__foot {
+  top: 1px;
+  left: 15%;
+  width: 10%;
+  height: 2vw;
+  background: linear-gradient(to bottom, #000 0%, #232323 70%, dimgray 90%, #000 100%);
+  border-radius: 50px;
+}
+.microwave__bottom__foot + .microwave__bottom__foot {
+  left: auto;
+  right: 15%;
+}
+.microwave__door {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 70%;
+  border-radius: 15px 0 0 15px;
+  z-index: 1;
+}
+.microwave__door__inner {
+  top: 13%;
+  left: 11%;
+  right: 11%;
+  bottom: 13%;
+  background: #373737;
+  box-shadow: inset 0px 0px 2vw rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+.microwave__door__inner::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: -1px;
+  transform: translate(50%, -50%);
+  width: 5vw;
+  height: 10vw;
+  border-radius: 100%;
+  background: linear-gradient(to top, #7d7d7d 0%, #afafaf 10%, #f2f2f2 45%, white 75%, #e1e1e1 100%);
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0% 100%);
+}
+.microwave__door__inner::before {
+  content: "";
+  position: absolute;
+  top: -0.25vw;
+  left: -0.25vw;
+  right: -0.25vw;
+  bottom: -0.25vw;
+  border-radius: 12px;
+  background: linear-gradient(to bottom, #0f0f0f 0%, white 100%);
+  opacity: 0.15;
+}
+.microwave__door__window {
+  top: 18%;
+  left: 15%;
+  right: 15%;
+  bottom: 18%;
+  box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.15), inset 0px 0px 2vw rgba(0, 0, 0, 0.6), 0px -1px 0 rgba(0, 0, 0, 0.25);
+  background: linear-gradient(to bottom, #4b5053 0%, #2d2d2d 100%);
+  border-radius: 5px;
+  overflow: hidden;
+  transition: 400ms;
+}
+.microwave__door__mesh {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDI1LjEuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA0MCA0MCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDAgNDA7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHJlY3QgeT0iMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIi8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIi8+Cjwvc3ZnPgo=");
+  background-size: 2vw;
+  opacity: 0.1;
+  border-radius: 5px;
+}
+.microwave__side {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 30%;
+  border-radius: 0 15px 15px 0;
+  z-index: 1;
+}
+.microwave__side::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  width: 0.4vw;
+  opacity: 0.7;
+  background: linear-gradient(to right, #000 40%, #777 45%, #777 50%, #777 75%, #000 80%);
+  mix-blend-mode: multiply;
+}
+.microwave__side::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: calc(100% + 0.4vw);
+  width: 0.3vw;
+  opacity: 0.7;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, white 40%);
+}
+.microwave__side__blend {
+  z-index: 2;
+  right: 100%;
+  width: 0.7vw;
+  background: linear-gradient(to bottom, #ebebeb 0%, rgba(255, 255, 255, 0) 10%);
+  top: 0;
+  bottom: 0;
+}
+.microwave__clock {
+  top: 15%;
+  height: 20%;
+  background: black;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to bottom, #0d0d0d 0%, #0d0d0d 4%, #383838 5%, #383838 15%, #2d2d2d 16%, #2d2d2d 50%, #222222 51%, #222222 90%, #2c2c2c 91%, #2c2c2c 100%);
+}
+.microwave__clock__time {
+  user-select: none;
+  color: #18a018;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Digital 7";
+  font-size: 4vw;
+  text-shadow: 0px 0px 5px rgba(0, 128, 0, 0.75);
+  opacity: 0;
+}
+.microwave__clock__time::before {
+  content: "00:00";
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.1;
+}
+.microwave__dial {
+  width: 60%;
+  padding-top: 60%;
+  background: linear-gradient(to top, white 30%, gray 100%);
+  box-shadow: 0px -0.5vw 0px white;
+  border-radius: 100%;
+  top: 45%;
+  left: 20%;
+}
+.microwave__dial__pos {
+  width: 0.6vw;
+  height: 0.6vw;
+  background: #222;
+  box-shadow: 0px 0.2vw 0px white;
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  top: 9%;
+  cursor: pointer;
+  transition: 400ms;
+}
+.microwave__dial__pos--1 {
+  left: 8%;
+}
+.microwave__dial__pos--2 {
+  top: -10%;
+  left: 50%;
+}
+.microwave__dial__pos--3 {
+  left: 92%;
+}
+.microwave__dial__pos.active {
+  background: #6e53fc;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2), 0px 0px 5px rgba(89, 58, 251, 0.4), 0px 0.2vw 0px white;
+}
+.microwave__dial__inner {
+  background: linear-gradient(to top, #afafaf 0%, #323232 100%);
+  border-radius: 100%;
+  top: 1vw;
+  left: 1vw;
+  right: 1vw;
+  bottom: 1vw;
+  z-index: 3;
+}
+.microwave__dial__inner__knob {
+  transform: rotate(-45deg);
+  transition: transform 400ms;
+  background: linear-gradient(to right, #ebebeb 0%, #ebebeb 15%, #b4b4b4 40%, #d7d7d7 40%, white 60%, gainsboro 60%, whitesmoke 75%, #ebebeb 80%, #ebebeb 90%, white 100%);
+  border-radius: 100%;
+  top: 0.5vw;
+  left: 0.5vw;
+  right: 0.5vw;
+  bottom: 0.5vw;
+  cursor: pointer;
+}
+.microwave__go {
+  width: 5vw;
+  height: 5vw;
+  left: 50%;
+  top: 80%;
+  background: linear-gradient(to top, white 30%, gray 100%);
+  box-shadow: 0px -0.3vw 0px white;
+  border-radius: 100%;
+  transform: translateX(-50%);
+}
+.microwave__go__inner {
+  background: linear-gradient(to top, #afafaf 0%, #323232 100%);
+  border-radius: 100%;
+  top: 0.4vw;
+  left: 0.4vw;
+  right: 0.4vw;
+  bottom: 0.4vw;
+  transition: transform 400ms;
+  z-index: 3;
+}
+.microwave__go__inner__button {
+  background: linear-gradient(to top, #27279c, #5555d4);
+  box-shadow: inset 0px 0px 0.4vw rgba(0, 0, 0, 0.4), 0px 0px 0.2vw rgba(0, 0, 0, 0.1), inset 0px 1px 1px rgba(166, 166, 233, 0.75), 0px 0.2vw 0px rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
+  top: 0.5vw;
+  left: 0.5vw;
+  right: 0.5vw;
+  bottom: 0.5vw;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-family: "Major Mono Display", monospace;
+  transition: 250ms;
+}
+.microwave__go__inner__button:active {
+  box-shadow: inset 0px 0px 0.4vw rgba(0, 0, 0, 0.6), 0px 0px 0.2vw rgba(0, 0, 0, 0), inset 0px 1px 1px rgba(39, 39, 156, 0.75), 0px 0.2vw 0px black;
+}
+
+.match {
+  width: 0.5vw;
+  height: 8vw;
+  background: linear-gradient(to top, #482217 0%, #efd195 70%, #994521 100%);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.match::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.5;
+  background: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0) 50%, black 100%);
+}
+.match__inner {
+  left: 0.05vw;
+  right: 0.05vw;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(to top, #310901 0%, #996148 70%, #996148 100%);
+}
+.match__head {
+  z-index: 2;
+  bottom: 94%;
+  width: 1.3vw;
+  height: 1.8vw;
+  border-radius: 100%;
+  opacity: 0.9;
+  background: linear-gradient(to top, #210900 0%, #994521 70%, #f1ce94 100%);
+  left: 50%;
+  transform: translateX(-48%);
+}
+.match__spark {
+  width: 0.1vw;
+  height: 0.5vw;
+  background: orange;
+  bottom: 0.5vw;
+  left: 0.2vw;
+  animation: spark 3s linear infinite;
+  opacity: 0;
+  transition: opacity 1000ms;
+}
+.match__spark:nth-of-type(2) {
+  left: 0.5vw;
+  bottom: 0.4vw;
+  animation: spark 2s linear infinite;
+  animation-delay: 1s;
+}
+.match__spark:nth-of-type(3) {
+  left: 1vw;
+  bottom: 0.3vw;
+  animation: spark 4s linear infinite;
+}
+.match__spark:nth-of-type(4) {
+  left: 1.4vw;
+  bottom: 0.5vw;
+  animation: spark 2s linear infinite;
+}
+.match__fire {
+  bottom: 100%;
+  z-index: 5;
+  left: 50%;
+  width: 2vw;
+  background: radial-gradient(circle farthest-corner at bottom, rgba(255, 165, 0, 0) 0%, orange 100%);
+  opacity: 0.6;
+  height: 3vw;
+  transform: translate(-50%, 0.3vw) rotate(45deg);
+  border-radius: 0 50px 30px 50px;
+  transition: bottom 1500ms ease-out;
+  animation: flamebreath2 2s ease-in-out infinite;
+  box-shadow: -5px -5px 10px 2.5px rgba(255, 165, 0, 0.5);
+}
+.match__fire__flame {
+  background: radial-gradient(40px, rgba(255, 255, 0, 0.25) 0%, yellow 100%);
+  box-shadow: -10px -10px 20px 5px rgba(255, 255, 0, 0.5);
+  left: 50%;
+  width: 180%;
+  bottom: -0.3vw;
+  height: 180%;
+  opacity: 0.9;
+  border-radius: 0 50px 30px 50px;
+  transition: 200ms;
+  animation: flamebreath1 1.5s ease-in-out infinite;
+}
+
+.microwaving .scene {
+  animation: backGlow 15s linear infinite;
+}
+.microwaving .scene::after {
+  animation: backGlowAfter 15s linear infinite;
+}
+.microwaving .microwave__door__window {
+  background: linear-gradient(to bottom, #feff97 0%, #818267 100%);
+  box-shadow: 0px 1px 0 rgba(246, 255, 0, 0.62), inset 0px 0px 2vw rgba(0, 0, 0, 0.21), 0px -1px 0 #dcdaa5;
+}
+.microwaving .microwave__door__window::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation: doorGlow 15s linear infinite;
+}
+.microwaving .match__spark {
+  opacity: 0;
+  animation: none;
+}
+.microwaving .match__fire {
+  animation: flamefreak 15s linear infinite;
+}
+.microwaving .match__fire__flame {
+  animation: flamefreak2 15s linear infinite;
+}
+
+@keyframes flamebreath1 {
+  0% {
+    transform: translate(-50%, 5%) skewX(0deg);
+  }
+  50% {
+    transform: translate(-50%, 15%) skewX(-10deg) rotate(-15deg);
+    border-radius: 0 50px 40px 50px;
+  }
+  100% {
+    transform: translate(-50%, 5%) skewX(0deg);
+  }
+}
+@keyframes flamebreath2 {
+  0% {
+    width: 2vw;
+    opacity: 0.6;
+  }
+  50% {
+    width: 2.5vw;
+    opacity: 0.5;
+    transform: translate(-50%, 0.3vw) rotate(50deg);
+  }
+  100% {
+    width: 2vw;
+    opacity: 0.6;
+  }
+}
+@keyframes spark {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  20% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-15vw);
+    background: yellow;
+  }
+}
+@keyframes flamefreak {
+  0%, 5%, 9%, 12%, 14%, 15%, 100% {
+    width: 2vw;
+    opacity: 0.6;
+    bottom: 100%;
+    border-radius: 0 50px 30px 50px;
+    transform: translate(-50%, 0.3vw) rotate(45deg);
+    background: radial-gradient(circle farthest-corner at bottom, rgba(255, 165, 0, 0) 0%, orange 100%);
+  }
+  2.5%, 7%, 10.5%, 13%, 14.5% {
+    width: 2.5vw;
+    opacity: 0.5;
+    transform: translate(-50%, 0.3vw) rotate(50deg);
+  }
+  16%, 18%, 20%, 95% {
+    width: 3vw;
+    opacity: 1;
+    bottom: 280%;
+    border-radius: 100%;
+    transform: translate(-50%, 0.3vw) rotate(0deg);
+    background: radial-gradient(circle farthest-corner at bottom, rgba(255, 165, 0, 0) 0%, orange 100%);
+    left: 50%;
+  }
+  17%, 19% {
+    background: yellow;
+    width: 4vw;
+    bottom: 250%;
+  }
+  22%, 30% {
+    width: 8vw;
+    bottom: 280%;
+  }
+  24%, 28% {
+    width: 6vw;
+    bottom: 220%;
+    left: 0;
+  }
+  26% {
+    width: 10vw;
+    bottom: 280%;
+  }
+  30%, 45%, 75%, 90% {
+    left: -400%;
+    bottom: 280%;
+    width: 10vw;
+  }
+  35%, 55%, 70% {
+    left: 400%;
+    bottom: 280%;
+    width: 12vw;
+  }
+  40%, 60%, 80% {
+    left: -200%;
+    bottom: 190%;
+    width: 3vw;
+  }
+  50%, 65%, 85% {
+    left: 600%;
+    bottom: 230%;
+    width: 6vw;
+  }
+}
+@keyframes flamefreak2 {
+  0%, 5%, 9%, 12%, 14%, 15% {
+    transform: translate(-50%, 5%) skewX(0deg);
+    border-radius: 0 50px 30px 50px;
+    background: radial-gradient(40px, rgba(255, 255, 0, 0.25) 0%, yellow 100%);
+  }
+  2.5%, 7%, 10.5%, 13%, 14.5% {
+    transform: translate(-50%, 15%) skewX(-10deg) rotate(-15deg);
+    border-radius: 0 50px 40px 50px;
+  }
+  16%, 100% {
+    transform: translate(-50%, 5%) skewX(0deg);
+    border-radius: 100%;
+    background: radial-gradient(40px, rgba(255, 255, 0, 0.25) 0%, yellow 100%);
+  }
+  17%, 90% {
+    background: white;
+  }
+}
+@keyframes doorGlow {
+  0% {
+    background: rgba(255, 255, 0, 0);
+  }
+  15% {
+    background: rgba(255, 255, 0, 0);
+  }
+  16%, 18% {
+    background: rgba(255, 255, 255, 0.85);
+  }
+  17%, 19%, 34%, 55%, 70% {
+    background: rgba(255, 255, 255, 0.5);
+  }
+  20%, 33%, 35%, 54%, 56%, 69%, 71%, 95%, 100% {
+    background: rgba(255, 255, 255, 0);
+  }
+  97%, 98% {
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
+@keyframes backGlow {
+  0%, 15%, 100% {
+    background-image: linear-gradient(43deg, #4158d0 0%, #c850c0 46%, #ffcc70 100%);
+    background-size: 100% 100%;
+  }
+  16%, 18% {
+    background: white;
+    background-size: 100% 100%;
+  }
+  17%, 19%, 30%, 40%, 50%, 60%, 70%, 80%, 90% {
+    background-size: 400% 400%;
+    background-image: linear-gradient(43deg, #21D4FD 0%, #B721FF 100%);
+    background-position: 87% 0%;
+  }
+  25%, 35%, 45%, 55%, 65%, 75%, 85% {
+    background-size: 400% 400%;
+    background-image: linear-gradient(43deg, #21D4FD 0%, #B721FF 100%);
+    background-position: 14% 100%;
+  }
+  97%, 98% {
+    background: black;
+  }
+}
+@keyframes backGlowAfter {
+  0%, 95%, 99%, 100% {
+    background: rgba(0, 0, 0, 0);
+  }
+  96%, 98% {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
